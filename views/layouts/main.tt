@@ -19,7 +19,7 @@
 	  [% INCLUDE includes/navbar.tt %]	
 		
 		[% IF success || info || errors%]
-		<div id="messages">
+			<div id="messages" class="container" style="padding-top:5em">
 		[% END %]
 		[% IF success %]
 			<div class="alert alert-success alert-block">
