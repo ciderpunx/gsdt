@@ -1,0 +1,69 @@
+ 		<!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="img/slide-01.jpg" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Get stuff done. Today.</h1>
+              <p class="lead">Coming soon to an interwebs near you: a simple, use everywhere, free software task manager that does some of GTD. In Dancer. Or maybe Yesod. What can I say? It&#8217;s early days.</p>
+              <!--a class="btn btn-large btn-primary" href="#">Email for more info</a-->
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img  src="img/slide-02.jpg" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Do stuff today</h1>
+              <p class="lead">This will be a simple task manager that implements some of GTD and some project type stuff, but only what I use.</p>
+              <!--a class="btn btn-large btn-primary" href="#">Learn more</a-->
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img  src="img/slide-01.jpg" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>More of this.</h1>
+              <p class="lead">That is it for now. Updates to follow.</p>
+              <!--a class="btn btn-large btn-primary" href="#">Browse gallery</a-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+
+		<!--Marketing type shizzle-->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+						<a name="about" id="about"> </a>
+          <h2>Getting stuff done</h2>
+					<p>I currently use a combination of Redmine, Lightning(and caldav) and mGSD to organize my tasks. I want something better. I've looked at dGSD, toodledo, Remember the Milk, Chandler, 
+						Tracks, GTD-Free and Thinking rock. Nothing has quite what I want. Time to write my own!</p>
+		        </div>
+        <div class="col-lg-4">
+          <h2>Making it</h2>
+          <p>This is very much a personal, spare time project. Drop me a line if you are interested.</p>
+          <!--p><a class="btn btn-default" href=""> &raquo;</a></p-->
+				</div>
+        <div class="col-lg-4">
+          <h2>Wishlist</h2>
+     			<ul>
+						<li>It should be free (as in freedom) software and have a REST API.</li>
+						<li>It should work everywhere on all devices.</li>
+						<li>It should be GTDish in approach.</li>
+						<li>It should have nice features like sending me a daily agenda.</li> 
+						<li>It should support realms, contexts, projects, actions and meetings.</li>
+					</ul>
+        </div>
+      </div>
