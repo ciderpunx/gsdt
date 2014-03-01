@@ -22,8 +22,11 @@ get '/' => sub {
 	};
 };
 
+get '/login' => sub {
+	redirect uri_for '/';
+};
 
-any '/login' => sub {
+post '/login' => sub {
     my ( $success, $realm ) =
       authenticate_user( params->{username}, params->{password} );
     if ($success) {
@@ -41,7 +44,7 @@ any '/login' => sub {
 any '/logout' => sub {
 	session->destroy;
 	template "index", {
-		info => "Logged in.", 
+		info => "Logged out.", 
 	}
 };
 

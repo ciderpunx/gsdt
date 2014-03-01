@@ -1,12 +1,12 @@
 use utf8;
-package GSDT::Schema::Result::Person;
+package GSDT::Schema::Result::User;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-GSDT::Schema::Result::Person
+GSDT::Schema::Result::User
 
 =cut
 
@@ -29,11 +29,11 @@ use base 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp");
 
-=head1 TABLE: C<person>
+=head1 TABLE: C<user>
 
 =cut
 
-__PACKAGE__->table("person");
+__PACKAGE__->table("user");
 
 =head1 ACCESSORS
 
@@ -43,27 +43,49 @@ __PACKAGE__->table("person");
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 name
+=head2 username
 
   data_type: 'varchar'
-  is_nullable: 1
-  size: 255
+  is_nullable: 0
+  size: 250
 
 =head2 email
 
   data_type: 'varchar'
   is_nullable: 1
-  size: 255
+  size: 250
+
+=head2 created_at
+
+  data_type: 'timestamp'
+  datetime_undef_if_invalid: 1
+  default_value: current_timestamp
+  is_nullable: 0
+
+=head2 password
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 250
 
 =cut
 
 __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
-  "name",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
+  "username",
+  { data_type => "varchar", is_nullable => 0, size => 250 },
   "email",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
+  { data_type => "varchar", is_nullable => 1, size => 250 },
+  "created_at",
+  {
+    data_type => "timestamp",
+    datetime_undef_if_invalid => 1,
+    default_value => \"current_timestamp",
+    is_nullable => 0,
+  },
+  "password",
+  { data_type => "varchar", is_nullable => 1, size => 250 },
 );
 
 =head1 PRIMARY KEY
@@ -80,8 +102,7 @@ __PACKAGE__->set_primary_key("id");
 
 
 # Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-03-01 10:39:33
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4uwc3WJVuy6RDw7JNqyKrg
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:H/Wf4cBVzhW8Q3wDCJwysQ
 
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;
