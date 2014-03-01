@@ -18,33 +18,33 @@
     <body>
 	  [% INCLUDE includes/navbar.tt %]	
 		
-		[% IF success || info || errors%]
+		[% IF flash.success || flash.info || flash.errors %]
 			<div id="messages" class="container" style="padding-top:5em">
 		[% END %]
-		[% IF success %]
+		[% IF flash.success %]
 			<div class="alert alert-success alert-block">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<p>[% success %]</p>
+				<p>[% flash.success %]</p>
 			</div>
 		[% END %]
-		[% IF info %]
+		[% IF flash.info %]
 			<div class="alert alert-info alert-block">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<p>[% info %]</p>
+				<p>[% flash.info %]</p>
 			</div>
 		[% END %]
-		[% IF errors %]
+		[% IF flash.errors %]
 			<div class="alert alert-danger">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				<h3>Error/s found</h3>
 				<ul class="error no-decoration">
-					[% FOR err IN errors %]
+					[% FOR err IN flash.errors %]
 						<li>[% err %]</li>
 					[% END %]
 				</ul>
 			</div>
 		[% END %]
-		[% IF success || info || errors%]
+		[% IF flash.success || flash.info || flash.errors %]
 		</div> <!--/messages-->
 		[% END %]
 
@@ -69,4 +69,3 @@
     </script>
     </body>
 </html>
-
