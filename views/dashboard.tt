@@ -9,4 +9,5 @@
 		[% END %]
 	</ul>
 	[% END %]
+	<h2>Bye</h2>
 </div>
