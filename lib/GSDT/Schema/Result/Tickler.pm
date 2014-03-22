@@ -61,6 +61,11 @@ __PACKAGE__->table("tickler");
   extra: {list => ["once","daily","weekly","foortnightly","monthly","yearly"]}
   is_nullable: 1
 
+=head2 action_id
+
+  data_type: 'integer'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -82,6 +87,8 @@ __PACKAGE__->add_columns(
     },
     is_nullable => 1,
   },
+  "action_id",
+  { data_type => "integer", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -97,8 +104,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-02-22 19:28:51
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:XFNVuyFb87S6ZdcO0lD/ow
+# Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-03-06 20:43:48
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:AGug1Iz178CV2FXLOGcHdA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

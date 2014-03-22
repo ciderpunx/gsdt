@@ -83,6 +83,11 @@ __PACKAGE__->table("action");
   data_type: 'integer'
   is_nullable: 1
 
+=head2 user_id
+
+  data_type: 'integer'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -118,6 +123,8 @@ __PACKAGE__->add_columns(
   },
   "hours_logged",
   { data_type => "integer", is_nullable => 1 },
+  "user_id",
+  { data_type => "integer", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -133,7 +140,9 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-02-22 19:28:51
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EynlZaf7Bj3SLI+rYwj+3g
+# Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-03-06 20:43:48
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:wqElZZpa6HSOHdENIRzDog
+
+__PACKAGE__->belongs_to("user" => "GSDT::Schema::Result::User", { 'foreign.id' => 'self.user_id' } );
 
 1;

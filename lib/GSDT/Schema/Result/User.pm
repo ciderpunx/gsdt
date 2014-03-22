@@ -104,9 +104,6 @@ __PACKAGE__->set_primary_key("id");
 # Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-03-01 10:39:33
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:H/Wf4cBVzhW8Q3wDCJwysQ
 
-__PACKAGE__->has_many("user_actions" => "GSDT::Schema::Result::UserAction"
-																				, "user_id"
-																				, { cascade_copy => 0, cascade_delete => 1 });
-__PACKAGE__->many_to_many("actions"  => 'user_actions', 'action');
+__PACKAGE__->has_many("actions" => "GSDT::Schema::Result::Action" , "user_id" , { cascade_copy => 0, cascade_delete => 1 });
 
 1;

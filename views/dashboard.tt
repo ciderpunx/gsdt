@@ -1,5 +1,12 @@
 <div class="container">
-	<h1>Dashboard</h1>
-
-	<p>Logged in as: [% session.logged_in_user.username %]</p>
+	<h1>[% session.logged_in_user %]&#8217;s Dashboard</h1>
+	[% IF actions AND actions.size  %]
+	<h2>Next actions</h2>
+	[% USE Dumper %]
+	<ul>
+		[% FOREACH action IN actions %]
+			<li>[% action.title %]</li>
+		[% END %]
+	</ul>
+	[% END %]
 </div>
