@@ -6,7 +6,7 @@ use Dancer::Plugin::DBIC qw(schema resultset rset);
 use Dancer::Plugin::Auth::Extensible;
 use Dancer::Plugin::FlashMessage;
 
-use gsdt::action;
+use gsdt::api::action;
 
 our $VERSION = '0.1';
 
