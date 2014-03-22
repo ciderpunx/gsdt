@@ -124,6 +124,11 @@ __PACKAGE__->set_primary_key("id");
 # Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-02-22 19:28:51
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:b1NV7y3Z6o3cXbNHmIox4A
 
+__PACKAGE__->has_many("user_project" => 'GSDT::Schema::Result::UserProject', 'project_id');
+__PACKAGE__->many_to_many("users" => 'user_project', 'user');
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->has_many("project_action" => 'GSDT::Schema::Result::ProjectAction', 'action_id');
+__PACKAGE__->many_to_many("actions" => 'project_action', 'action');
+
+
 1;

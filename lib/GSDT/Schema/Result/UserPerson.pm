@@ -76,6 +76,7 @@ __PACKAGE__->add_unique_constraint("user_person", ["user_id", "person_id"]);
 # Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-03-01 10:39:33
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:UI1TKj+4x2FvAzgBf1X5tg
 
+__PACKAGE__->belongs_to(person => 'GSDT::Schema::Result::Person', 'person_id');
+__PACKAGE__->belongs_to(user    => 'GSDT::Schema::Result::User', 'user_id');
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

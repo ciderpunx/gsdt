@@ -106,4 +106,16 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->has_many("actions" => "GSDT::Schema::Result::Action" , "user_id" , { cascade_copy => 0, cascade_delete => 1 });
 
+__PACKAGE__->has_many("user_context" => "GSDT::Schema::Result::UserContext", "user_id", { cascade_copy => 0, cascade_delete => 1 });
+__PACKAGE__->many_to_many("contexts" => "user_context", "context");
+
+__PACKAGE__->has_many("user_person" => "GSDT::Schema::Result::UserPerson", "user_id", { cascade_copy => 0, cascade_delete => 1 });
+__PACKAGE__->many_to_many("people" => "user_project", "person");
+
+__PACKAGE__->has_many("user_project" => "GSDT::Schema::Result::UserProject", "user_id", { cascade_copy => 0, cascade_delete => 1 });
+__PACKAGE__->many_to_many("projects" => "user_project", "project");
+
+__PACKAGE__->has_many("user_reference" => "GSDT::Schema::Result::UserReference", "user_id", { cascade_copy => 0, cascade_delete => 1 });
+__PACKAGE__->many_to_many("references" => "user_reference", "reference");
+
 1;

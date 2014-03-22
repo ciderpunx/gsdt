@@ -82,6 +82,7 @@ __PACKAGE__->set_primary_key("id");
 # Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-03-01 10:39:33
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4uwc3WJVuy6RDw7JNqyKrg
 
+__PACKAGE__->has_many("user_person" => 'GSDT::Schema::Result::UserContext', 'person');
+__PACKAGE__->has_many("user" => 'user', 'user_person');
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

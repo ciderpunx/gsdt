@@ -60,6 +60,7 @@ __PACKAGE__->add_columns(
 # Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-02-22 19:28:51
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:iAduQAaYsAYm/r4+2kJ2GQ
 
+__PACKAGE__->belongs_to(project => 'GSDT::Schema::Result::Project', 'project_id');
+__PACKAGE__->belongs_to(action  => 'GSDT::Schema::Result::Action', 'action_id');
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

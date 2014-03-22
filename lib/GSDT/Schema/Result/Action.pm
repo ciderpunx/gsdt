@@ -143,6 +143,10 @@ __PACKAGE__->set_primary_key("id");
 # Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-03-06 20:43:48
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:wqElZZpa6HSOHdENIRzDog
 
-__PACKAGE__->belongs_to("user" => "GSDT::Schema::Result::User", { 'foreign.id' => 'self.user_id' } );
+__PACKAGE__->has_many("user_projects" => "GSDT::Schema::Result::UserProject", { 'foreign.project_id' => 'self.id' } );
+__PACKAGE__->many_to_many("users" => "user_projects", "user_id");
+
+__PACKAGE__->has_many("project_action" => "GSDT::Schema::Result::ProjectAction", { 'foreign.project_id' => 'self.id' } );
+__PACKAGE__->many_to_many("projects" => "project_action", "project");
 
 1;

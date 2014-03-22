@@ -7,6 +7,7 @@ use Dancer::Plugin::Auth::Extensible;
 use Dancer::Plugin::FlashMessage;
 
 use gsdt::api::action;
+use gsdt::api::project;
 
 our $VERSION = '0.1';
 
