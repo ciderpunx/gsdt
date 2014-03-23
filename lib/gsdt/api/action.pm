@@ -1,15 +1,12 @@
 package gsdt::api::action;
 use Dancer ':syntax';
 use Dancer::Plugin::DBIC qw(schema resultset rset);
-use Dancer::Plugin::Feed;
-use Dancer::Plugin::Email;
 use Dancer::Plugin::Auth::Extensible;
 
 set serializer => 'mutable';
 
 prefix '/api/action';
 
-# List
 get '/' => require_login sub {
     my @actions = map {
         id           => $_->id,
@@ -21,14 +18,16 @@ get '/' => require_login sub {
         priority     => $_->priority,
         hours_logged => $_->hours_logged,
     }, gsdt::_get_user( session 'logged_in_user_id' )->actions;
-    return { actions => \@actions };
+
+		if(@actions) { return \@actions }
+		else				 { return 404 }
 };
 
-# Show
 get '/:id' => require_login sub {
 	my $action = _get_user_action_by_id(param 'id');
 	if ($action) {
 		return {action => {
+		    user_id			 => (session 'logged_in_user_id'),
 		    id           => $action->id,
         status       => $action->status,
         title        => $action->title,
@@ -40,17 +39,14 @@ get '/:id' => require_login sub {
 			}
 		}
 	}
-	else {
-		status 204;
-	}
+	else { status 404 }
 };
 
-# Create
 post '/create' => require_login sub {
 	my $schema = schema 'gsdt';
 	# TODO: Validate params
 	my $action = $schema->resultset('Action')->create({
-				user_id      => session 'logged_in_user_id',
+				user_id      => (session 'logged_in_user_id'),
         status       => param 'status',
         title        => param 'title',
         body         => param 'body',
@@ -59,33 +55,45 @@ post '/create' => require_login sub {
         priority     => param 'priority',
         hours_logged => param 'hours_logged',
 	}); 
-  status 204;
+
+  if ($action) { status 204 }
+	else				 { status 500 }
 };
 
-# Update
 put '/:id' => require_login sub {
 	my $schema = schema 'gsdt';
 	# TODO: Validate params
 	my $action = 	_get_user_action_by_id(param 'id');
-	$action->update({
-				user_id      => session 'logged_in_user_id',
-        status       => param 'status',
-        title        => param 'title',
-        body         => param 'body',
-        start        => param 'start',
-        end          => param 'end',
-        priority     => param 'priority',
-        hours_logged => param 'hours_logged',
-	}); 
-  status 204;
+
+	if($action) {
+		my $r = $action->update({
+					user_id      => (session 'logged_in_user_id'),
+					status       => param 'status',
+					title        => param 'title',
+					body         => param 'body',
+					start        => param 'start',
+					end          => param 'end',
+					priority     => param 'priority',
+					hours_logged => param 'hours_logged',
+		}); 
+
+		if ($r) { status 204 }
+		else		{ status 500 }
+	}
+	else { status 404 }
 };
 
-# Delete
 del '/delete/:id' => require_login sub {
 	my $schema = schema 'gsdt';
 	my $action = 	_get_user_action_by_id(param 'id');
-	$action->delete;
-  status 204;
+	if($action) {
+		my $r = $action->delete;
+
+		if ($r) { status 204 }
+		else		{ status 500 }
+	}
+	else { status 404 }
+
 };
 
 sub _get_user_action_by_id {

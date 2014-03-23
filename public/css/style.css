@@ -19,8 +19,9 @@ h1,h2,h3,h4,h5,h6 {
 }
 footer p {font-weight:300}
 
-/* CUSTOMIZE THE NAVBAR
--------------------------------------------------- */
+.page {
+		padding-top:70px;
+} 
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {

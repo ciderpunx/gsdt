@@ -6,8 +6,9 @@ use Dancer::Plugin::DBIC qw(schema resultset rset);
 use Dancer::Plugin::Auth::Extensible;
 use Dancer::Plugin::FlashMessage;
 
-use gsdt::api::action;
-use gsdt::api::project;
+use gsdt::action;
+
+use gsdt::api;
 
 our $VERSION = '0.1';
 
@@ -44,13 +45,15 @@ post '/login' => sub {
 					template "index", {
 						flash errors => ["You can't log in. Check your spelling?"], 
 					};
-					return;
+					status 403;
 				}
-        session logged_in_user       => $user->username;
-				session logged_in_user_id    => $user->id;
-        session logged_in_user_realm => $realm;
-				flash info				=> "You logged in. Well, hello.";	
-				redirect params->{return_url} || uri_for '/dashboard';
+				else {
+					session logged_in_user       => $user->username;
+					session logged_in_user_id    => $user->id;
+					session logged_in_user_realm => $realm;
+					flash info									 => "You logged in. Well, hello.";	
+					redirect params->{return_url} || uri_for '/dashboard';
+				}
     }
     else {
 			template "index", {
@@ -66,7 +69,6 @@ any '/logout' => sub {
 	}
 };
 
-
 sub _get_user_by_name {
 	my $username = shift; 
 	my $schema  = schema 'gsdt';
@@ -81,9 +83,7 @@ sub _get_user {
 	my $user = $schema->resultset('User')->search({
 			id => { '=', $userid } ,
 	})->first;
-	return unless $user; # TODO: blow up rather than returning nothing
-
-
+	return unless $user;
 }
 
-true;
+1;
