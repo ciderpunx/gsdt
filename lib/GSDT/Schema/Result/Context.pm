@@ -74,7 +74,7 @@ __PACKAGE__->set_primary_key("id");
 # Created by DBIx::Class::Schema::Loader v0.07025 @ 2014-02-22 19:28:51
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:D/tQvSmA8nFZ5kgSCN4EOw
 
-__PACKAGE__->has_many("user_context" => 'GSDT::Schema::Result::UserContext', 'context');
-__PACKAGE__->has_many("user" => 'user', 'user_context');
+__PACKAGE__->has_many("user_context" => 'GSDT::Schema::Result::UserContext', 'context_id');
+__PACKAGE__->many_to_many("user" => 'user', 'user_context');
 
 1;
