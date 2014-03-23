@@ -1,6 +1,6 @@
 
 <div class="container page">
-	<h1>[% session.logged_in_user_id %]&#8217;s next actions</h1>
+	<h1>[% session.logged_in_user %]&#8217;s next actions</h1>
 	<div id="content"> </div>
 </div>
 
