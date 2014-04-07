@@ -6,9 +6,9 @@ use Dancer::Plugin::Auth::Extensible;
 prefix '/action';
 
 get '/' => sub {
-	template "action", {
+	template "action-can", {
 		title => "Get Stuff Done. Today. Actions",
 		description => "A task management system: Actions",
-		extra_script_imports => "js/action.js",
+		extra_script_imports => "js/action-can.js",
 	};
 }; 

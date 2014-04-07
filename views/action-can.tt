@@ -1,4 +1,3 @@
-
 <div class="container page">
 	<h1>[% session.logged_in_user %]&#8217;s next actions</h1>
 	<div id="content"> </div>
@@ -7,12 +6,27 @@
 <script id="appMustache" type="text/mustache">
 <actions-app>
 	<div class="row">	
+	  <h3>Add new action</h3>
+		<create-action-form>
+		<form id="create-action-form" class="col-sm-12" >
+		    <input type="hidden" value="[% session.logged_in_userid %]" can-value="user_id"/>
+				<label for="title">Title</label>
+				<input id="title" type="text" can-value="title" /><br />
+				<label for="status">Status</label>
+				<input id="status" type="text" can-value="status" /><br />
+				<label for="body">Body</label><br />
+				<textarea id="body" can-value="body" /><br />
+				<button can-click="create">Add</button>
+		</form>
+		</create-action-form>
+	</div>
+	<div class="row">	
 		<div class="col-sm-4">
 			<ul>
 				{{#each actions}}
 				<li>
 					<p>
-						<input type="checkbox" can-value="complete"/>
+						<input type="checkbox" can-value="status" value="complete" />
 						<span class="{{#if complete}}done{{/if}}" can-click="select"> {{title}} </span>
 						<button can-click="destroy">X</button>
 					</p>
@@ -21,7 +35,7 @@
 					</p>
 				</li>
 				{{/each}}
-			</ul>
+			</ul>		
 		</div>
 
 		<div class="col-sm-8">

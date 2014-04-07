@@ -42,21 +42,21 @@ get '/:id' => require_login sub {
 	else { status 404 }
 };
 
-post '/create' => require_login sub {
+post '/create' =>  sub {
 	my $schema = schema 'gsdt';
 	# TODO: Validate params
 	my $action = $schema->resultset('Action')->create({
 				user_id      => (session 'logged_in_user_id'),
-        status       => param 'status',
-        title        => param 'title',
-        body         => param 'body',
-        start        => param 'start',
-        end          => param 'end',
-        priority     => param 'priority',
-        hours_logged => param 'hours_logged',
+        status       => param('status'),
+        title        => param('title'),
+        body         => param('body'),
+        start        => param('start'),
+        end          => param('end'),
+        priority     => param('priority'),
+        hours_logged => param('hours_logged'),
 	}); 
 
-  if ($action) { status 204 }
+  if ($action) { return {id => $action->id,} }
 	else				 { status 500 }
 };
 
@@ -68,13 +68,13 @@ put '/:id' => require_login sub {
 	if($action) {
 		my $r = $action->update({
 					user_id      => (session 'logged_in_user_id'),
-					status       => param 'status',
-					title        => param 'title',
-					body         => param 'body',
-					start        => param 'start',
-					end          => param 'end',
-					priority     => param 'priority',
-					hours_logged => param 'hours_logged',
+					status       => param('status'),
+					title        => param('title'),
+					body         => param('body'),
+					start        => param('start'),
+					end          => param('end'),
+					priority     => param('priority'),
+					hours_logged => param('hours_logged'),
 		}); 
 
 		if ($r) { status 204 }
@@ -83,7 +83,7 @@ put '/:id' => require_login sub {
 	else { status 404 }
 };
 
-del '/delete/:id' => require_login sub {
+del '/:id' => sub {
 	my $schema = schema 'gsdt';
 	my $action = 	_get_user_action_by_id(param 'id');
 	if($action) {
