@@ -1,0 +1,39 @@
+<h1>Test Angular</h1>
+
+<div data-ng-app="GSDT">
+  <div data-ng-controller="ActionsC">
+    <input type="text" ng-model="search.title" class="search-query" placeholder="Search" />
+    <p>Status:
+    <select data-ng-model="search.status">
+      <option value=""></option>
+      <option value="next">Next action</option>
+      <option value="someday/maybe">Someday/Maybe</option>
+      <option value="waiting">Waiting</option>
+      <option value="complete">Complete</option>
+    </select>
+
+    Priority: 
+    <select data-ng-model="search.priority">
+      <option value=""></option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+    </p>
+
+    <ul class="action-list">
+      <li data-ng-repeat="action in actions | filter:search">
+        <h4>{{ action.title }}</h4>
+        <p>{{action.body}}</p>  
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"></script>
+<script type="text/javascript" src="/ng/gsdt.js"></script>
+<!--anything we need for the views, controllers and shit-->
+<!--TODO:create and edit actions-->

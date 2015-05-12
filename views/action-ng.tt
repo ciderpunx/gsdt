@@ -1,20 +1,20 @@
 <div class="container page">
-	<h1>[% session.logged_in_user %]&#8217;s next actions</h1>
-	<div id="content"> </div>
+  <h1>[% session.logged_in_user %]</h1>
+  <div id="content"> </div>
 </div>
 
 <section id="app_action" ng-app="appAction" ng-controller="actionListController">
 
 <ul id="action-list">
-	<li ng-repeat="action in actions | filter:statusFilter track by $index" ng-class="{completed: action.completed, editing: action == editedAction}">
-	<div class="view">
-		<input class="toggle" type="checkbox" ng-model="action.completed">
-		<label ng-dblclick="vm.editAction(action)">{{action.title}}</label>
-		<button class="destroy" ng-click="vm.removeTodo(action)"></button>
-	</div>
-	<form ng-submit="vm.doneEditing(action)">
-		<input class="edit" ng-model="action.title" action-blur="vm.doneEditing(action)" action-focus="action == editedTodo">
-	</form>
-	</li>
+  <li ng-repeat="action in actions | filter:statusFilter" ng-class="{completed: action.completed, editing: action == editedAction}">
+  <div class="view">
+    <input class="toggle" type="checkbox" ng-model="action.completed">
+    <label ng-dblclick="vm.editAction(action)">{{action.title}}</label>
+    <button class="destroy" ng-click="vm.removeTodo(action)"></button>
+  </div>
+  <form ng-submit="vm.doneEditing(action)">
+    <input class="edit" ng-model="action.title" action-blur="vm.doneEditing(action)" action-focus="action == editedTodo">
+  </form>
+  </li>
 </ul>
 </section>
